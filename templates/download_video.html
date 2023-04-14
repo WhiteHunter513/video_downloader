@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title class="tit">Instagram Downloader</title>
+  </head>
+  <body>
+    <p class="tit1">Instagram Downloader</p>
+    <p class="tit2">Preview:</p>
+    <div class="vi">
+      {% if post.typename == 'GraphSidecar' %}
+      {% for node in post.get_sidecar_nodes() %}
+        {% if node.is_video %}
+          <video class="vid1" width="auto" height="auto" preload="none" controls>
+            <source src="{{ node.video_url }}">
+          </video>
+        {% else %}
+          <img src="{{ node.display_url }}" alt="{{ post.caption }}">
+        {% endif %}
+        <br>
+        {% if node.is_video %}
+          <button class="but1"><a class="but01" href="{{ node.video_url }}" download>Download</a></button>
+        {% else %}
+          <button class="but1"><a class="but01" href="{{ node.display_url }}" download>Download</a></button>
+        {% endif %}
+        <br><br>
+      {% endfor %}
+    {% else %}
+      <video class="vid" width="auto" height="auto" preload="none" controls>
+        <source src="{{ post.video_url }}">
+      </video>
+      <br>
+      <button class="down"><a class="down1" href="{{ post.video_url }}" download>Download</a></button>
+      {% endif %}</div>
+
+  <style>
+
+                body{
+                    background-color:white;
+                }
+                .tit1{
+                    color: black;
+                    font-weight: bold;
+                    font-size: 50px;
+                    text-align: center;
+                }
+                .tit2
+                {
+                    color: black;
+                    font-weight: 600;
+                    font-size: 30px;
+                    display: block;
+                }
+                .vid{
+                    margin-left: 150px;
+                    display: flexbox;
+                    width:600px;
+                    height: 1000px;
+                }
+                .vid1{
+                    margin-left: 150px;
+                    display: flexbox;
+                    width:600px;
+                    height: 1000px;
+                }
+                .but01{
+                    color: #fff;
+                    font-size:50px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+                .but1{
+                    border-radius: 10px;
+                    width: auto; 
+                    margin-left: 300px;  
+                    margin-top: 20px; 
+                    border: none;
+                    outline: none;color: #fff;
+                    background-color: #4CAF50;
+                }
+                .but1:hover{
+                    animation: glow 1.5s ease-in-out infinite;
+                    box-shadow: 0 0 10px #4CAF50,0 0 40px #4CAF50 , 0 0 80px #4CAF50;
+                    
+                }
+                .down{
+                    border-radius: 10px;
+                    width: auto; 
+                    margin-left: 300px;  
+                    margin-top: 20px; 
+                    border: none;
+                    outline: none;
+                    color: #fff;
+                    background-color: #4CAF50;
+                  
+                }  
+                .down:hover{
+                    animation: glow 1.5s ease-in-out infinite;
+                    box-shadow: 0 0 10px #4CAF50,0 0 40px #4CAF50 , 0 0 80px #4CAF50;
+                    
+                } 
+                @keyframes glow {
+                    0% {
+                        box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+                    }
+                    50% {
+                        box-shadow: 0 0 20px #4CAF50,0 0 30px #4CAF50, 0 0 40px #4CAF50;
+                    }
+                    0% {
+                        box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+                    }
+                }
+                .down1{
+                    color: #fff;
+                    font-size:50px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+
+  </style>
+
+  </body>
+</html>

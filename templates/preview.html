@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preview YouTube Video</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .video {
+        margin-bottom: 20px;
+      }
+      .down{
+                    border-radius: 10px;
+                    width: auto; 
+                    margin-left: 300px;  
+                    margin-top: 20px; 
+                    border: none;
+                    outline: none;
+                    color: #fff;
+                    background-color: #4CAF50;
+                    display: inline-block;
+                    margin-left: 20px;
+                    color: #fff;
+                    background-color: #4CAF50;
+                }  
+                .down:hover{
+                    animation: glow 1.5s ease-in-out infinite;
+                    box-shadow: 0 0 10px #4CAF50,0 0 40px #4CAF50 , 0 0 80px #4CAF50;
+                    
+                } 
+                @keyframes glow {
+                    0% {
+                        box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+                    }
+                    50% {
+                        box-shadow: 0 0 20px #4CAF50,0 0 30px #4CAF50, 0 0 40px #4CAF50;
+                    }
+                    0% {
+                        box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+                    }
+                }
+                .down1{
+                    color: #fff;
+                    font-size:50px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+    </style>
+  </head>
+  <body>
+    <div class="video">
+      <h2>{{ video.title }}</h2>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Resolution</th>
+          <th>Preview</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for resolution in resolutions|sort(reverse=True) %}
+        {% set stream = video.streams.filter(res=resolution, file_extension='mp4').first() %}
+        {% if stream and stream.includes_audio_track %}
+        <tr>
+          <td>{{ resolution }}</td>
+          <td>
+            <video width="320" height="240" controls>
+              <source src="{{ stream.url }}" type="video/mp4">
+            </video>
+          </td>
+          <td>
+            
+              <button class="down" type="submit"><a class="down1" href="{{ stream.url}}">Download</button>
+           
+          </td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

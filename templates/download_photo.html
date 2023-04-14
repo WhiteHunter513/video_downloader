@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram Downloader</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <p class="tit1">Instagram Downloader</p>
+    <p class="tit2">Preview:</p>
+    <div class="img">
+      {% if post.typename == 'GraphSidecar' %}
+      {% for edge in post.get_sidecar_nodes() %}
+        <img class="img1" src="{{ edge.display_url }}" alt="{{ post.caption }}">
+        <br>
+        <button class="down"><a class="down1" href="{{ edge.display_url }}" download>Download</a></button>
+        <br><br>
+      {% endfor %}
+    {% else %}
+      <img class="img1" src="{{ post.url }}" alt="{{ post.caption }}">
+      <br>
+      <button class="down"><a class="down1" href="{{ post.url }}" download>Download</a></button>
+    {% endif %}
+    </div>
+
+  <style>
+
+          body{
+              background-color: #fff;
+          }
+          .tit1{
+              font-size: 50px;
+              font-weight: bold;
+              text-align: center;
+          }
+          .tit2{
+              font-size: 45px;
+          }
+          .img1{
+              height: 700px;
+              width: 700px;
+              margin-left: 100px;
+          }
+          .down{
+              border-radius: 10px;
+              width: auto; 
+              margin-left: 300px;  
+              margin-top: 20px; 
+              border: none;
+              outline: none;
+              color: #fff;
+              background-color: #4CAF50;
+            
+          }  
+          .down:hover{
+              animation: glow 1.5s ease-in-out infinite;
+              box-shadow: 0 0 10px #4CAF50,0 0 40px #4CAF50 , 0 0 80px #4CAF50;
+              
+          } 
+          @keyframes glow {
+              0% {
+                  box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+              }
+              50% {
+                  box-shadow: 0 0 20px #4CAF50,0 0 30px #4CAF50, 0 0 40px #4CAF50;
+              }
+              0% {
+                  box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+              }
+          }
+          .down1{
+              color: #fff;
+              font-size:50px;
+              text-decoration: none;
+              font-weight: bold;
+              text-transform: uppercase;
+          }
+
+  </style>
+
+  </body>
+</html>

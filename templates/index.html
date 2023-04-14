@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Download Video</title>
+  </head>
+  <body>
+    <p class="tit">video downloader</p>
+    <form method="post" action="{{ url_for('preview', url=url|urlencode) }}">
+      <label class="lab" for="url">YouTube URL:</label>
+      <input class="inp" type="text" id="url" name="url" required>
+      <button class="sub1" type="submit">Preview</button>
+    </form>
 
+    <style>
+
+      body{
+          background-color:#fff ;
+      }
+      .tit{
+          color: black;
+          font-size:50px;
+          font-weight: bold;
+          text-align: center;
+          text-decoration: none;
+          text-transform: uppercase;
+      }
+      .inp{
+          height:50px;
+          width:500px;
+          border-radius:20px;
+          font-size: 30px;
+          font-weight: bold;
+          text-decoration: none;
+          margin-top: 100px;
+      }
+      .lab{
+          font-size:30px;
+          font-weight: bold;
+          text-decoration: none;
+      }
+      .sub1{
+          border-radius: 10px;
+          width: auto; 
+          margin-left: 400px;  
+          margin-top: 100px; 
+          border: none;
+          outline: none;
+          background-color: #4CAF50;
+          font-size: 60px;
+          text-align: center;
+          text-transform: uppercase;
+      }
+      .sub1:hover{
+          animation: glow 1.5s ease-in-out infinite;
+          box-shadow: 0 0 10px #4CAF50,0 0 40px #4CAF50 , 0 0 80px #4CAF50;
+      }
+      @keyframes glow {
+          0% {
+              box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+          }
+          50% {
+              box-shadow: 0 0 20px #4CAF50,0 0 30px #4CAF50, 0 0 40px #4CAF50;
+          }
+          0% {
+              box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+          }
+      }
+
+</style>
+  </body>
+</html>

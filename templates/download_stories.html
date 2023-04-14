@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Download Stories</title>
+  </head>
+  <body>
+    <p class="tit">STORIES FROM-{{ username }}</p>
+    {% for item in story_items %}
+      <button class="down"><a class="down1" href="{{ item.video_url or item.url }}" download>{{ item.owner_username }}'s story ({{ item.date_local }})</a></button><br>
+    {% endfor %}
+  </body>
+  <style>
+	body{
+		background-color: #fff;
+	}
+	.tit{
+		text-align: center;
+		font-size: 50px;
+		font-weight: bold;
+	}
+	.down{
+    border-radius: 10px;
+		width: 800px; 
+		height: 150px;
+    margin-left:70px;  
+    margin-top: 20px; 
+    border: none;
+		outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+		align-items: center;
+		font-size: 30px;
+    }  
+  .down:hover{
+    animation: glow 1.5s ease-in-out infinite;
+    box-shadow: 0 0 10px #4CAF50,0 0 40px #4CAF50 , 0 0 80px #4CAF50;
+    } 
+  @keyframes glow {
+    0% {
+        box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+        }
+    50% {
+        box-shadow: 0 0 20px #4CAF50,0 0 30px #4CAF50, 0 0 40px #4CAF50;
+        }
+    0% {
+        box-shadow: 0 0 10px #4CAF50,0 0 20px #4CAF50, 0 0 30px #4CAF50;
+        }
+      }
+  .down1{
+    text-decoration: none;
+    color: #fff;
+    font-size:30px;
+    width:800px; 
+		height:150px;
+  }    
+
+  </style>
+</html>
